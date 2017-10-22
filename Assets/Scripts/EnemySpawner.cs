@@ -54,9 +54,9 @@ public class EnemySpawner : MonoBehaviour {
 		}
 
 	void Spawn(int i, float y){
-		enemy = Instantiate (wave [i], transform.position, Quaternion.identity);
+		enemy = Instantiate (wave [i], this.transform);
 		enemy.startPosition = new Vector3 (0.0f, y, 110.0f+Random.Range(0.0f,30.0f));
-		enemy.transform.position = new Vector3 (0.0f, enemy.startPosition.y, 0.0f);
+		enemy.transform.position = new Vector3 (enemy.transform.position.x, enemy.startPosition.y, -60.0f);
 	}
 
 	void NewWave(){

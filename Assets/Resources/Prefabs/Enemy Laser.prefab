@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4381658150601884}
-  - component: {fileID: 65934389490813016}
   - component: {fileID: 96181940800235512}
   - component: {fileID: 114267101115824146}
   m_Layer: 10
@@ -42,18 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65934389490813016
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1282846837788208}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 30, y: 2, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &96181940800235512
 TrailRenderer:
   serializedVersion: 2
@@ -149,7 +136,7 @@ TrailRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_MinVertexDistance: 0.05
+  m_MinVertexDistance: 0.5
   m_Autodestruct: 0
 --- !u!114 &114267101115824146
 MonoBehaviour:
@@ -164,6 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   damage: 0.1
-  precision: 1
+  precision: 0.25
   trailCollider: {fileID: 114700203462715760, guid: c4f9d872f0ce9e54a98225def9b27bbc,
     type: 2}
