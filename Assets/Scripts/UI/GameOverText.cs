@@ -2,15 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Author: Jonas Iacobi (12:52 23-10-2017)
 public class GameOverText : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

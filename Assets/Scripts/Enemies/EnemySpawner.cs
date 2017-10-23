@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+/* Author: Jonas Iacobi (13:16 23-10-2017)
+ * Handles the spawning of enemy ships, including waves.
+*/
 public class EnemySpawner : MonoBehaviour {
 
 	private int waveNo;
@@ -33,10 +37,10 @@ public class EnemySpawner : MonoBehaviour {
 
 					spawnHeights = new int[spawnNo];
 					for (int i = 0; i < spawnNo; i++) {
-						spawnHeights [i] = UniqueInt(spawnHeights, 1, 8);
+						spawnHeights [i] = UniqueInt(spawnHeights, 0, 9);
 					}
 						for (int i = 0; i < spawnNo; i++) {
-						Spawn (waveInd, (1+spawnHeights[i])*5.0f);
+						Spawn (waveInd, (spawnHeights[i])*5.0f);
 							waveInd++;
 						}		
 						spawnTime = 0;
@@ -72,9 +76,12 @@ public class EnemySpawner : MonoBehaviour {
 		}
 	}
 			
-	int UniqueInt(int[] spawnHeights, int min, int max){
+	//Returns an integer between min and max that is not present in an array
+	int UniqueInt(int[] array, int min, int max){
+		int safeInt = 100000;
 		int val = Random.Range(min, max);
-		while(spawnHeights.Contains(val)){
+		while(array.Contains(val)){
+			if (--safeInt <= 0) {Debug.Log("Method UniqueInt in EnemySpawner.cs failed to find a unique integer, check parameters."); break;} //Basic sanity check to prevent an infinite or long loop in case 
 			val = Random.Range(min, max);
 		}
 		return val;

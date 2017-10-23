@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75b8661ac4edc442a9013b1b424237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverTime: 0
   gameOverText: {fileID: 1302388954}
 --- !u!4 &144632645
 Transform:
@@ -565,6 +566,10 @@ Prefab:
         type: 2}
       propertyPath: m_ReceiveShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459865271901746, guid: 8a62cc8b68ef06f4aa61feb1fbde8ddd, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65826112303955868, guid: 8a62cc8b68ef06f4aa61feb1fbde8ddd, type: 2}
@@ -1183,7 +1188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d23025b3ed44b44781a87c5858471b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
   scorePerSecond: 100
 --- !u!1 &1493999835
 GameObject:
@@ -1661,7 +1665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 370.0002}
+  m_AnchoredPosition: {x: 0, y: 370.00024}
   m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2104279529
