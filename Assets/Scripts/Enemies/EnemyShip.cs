@@ -88,15 +88,16 @@ public class EnemyShip : MonoBehaviour {
 	//Colliding with player fire, or the player
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player Fire")
+		if (!dead) 
 		{
-			this.hp--;
-			Destroy (other.gameObject);
-		}
-		if (other.tag == "Player") 
-		{
-			this.hp = 0;
-			other.gameObject.GetComponent<PlayerController2D>().Damage(1);
+			if (other.tag == "Player Fire") {
+				this.hp--;
+				Destroy (other.gameObject);
+			}
+			if (other.tag == "Player") {
+				this.hp = 0;
+				other.gameObject.GetComponent<PlayerController2D> ().Damage (1);
+			}
 		}
 	}
 		

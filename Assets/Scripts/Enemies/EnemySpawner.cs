@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		spawnNo = 3;
+		spawnNo = 2;
 		if (PlayerPrefs.HasKey (difficultyKey)) {
 			waveNo = (int)PlayerPrefs.GetFloat (difficultyKey) - 1;
 		} else {
@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour {
 		waveNo++;
 		waveInd = 0;
 		waveTime = 0;
-		spawnNo = 3 + (int)(waveNo/10);
+		spawnNo = 2 + (int)(waveNo/10);
 		wave = new EnemyShip[3 + (waveNo*2) * spawnNo];
 		for (int i = 0; i < 3 + (waveNo*2) * spawnNo; i++) {
 			enemyInd =  Random.Range (0, (int)enemies.Length);

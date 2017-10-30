@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemyStandardShip : EnemyShip {
 
 	private float pathMagnitude, pathFrequency;
-	private float time, vsp;
+	private float time, vsp, dir;
 
 	void Start(){
-		pathMagnitude = 13.0f / (Random.Range (1.0f,4.0f)*3.0f);
+		pathMagnitude = 13.0f / (Random.Range (1.0f,4.0f));
 		pathFrequency = .1f;
 		time = 0.0f;
 		vsp = 0.0f;
+		dir = Random.Range (0, 2) * 2 - 1;
 	}
 
 	// Update is called once per frame
@@ -27,9 +28,11 @@ public class EnemyStandardShip : EnemyShip {
 				} else {
 					fireTime += Time.deltaTime;
 				}
+
+				MovePath ();
 			}
 			Move ();
-			MovePath ();
+
 		}
 		else
 			CheckActive ();
@@ -37,7 +40,7 @@ public class EnemyStandardShip : EnemyShip {
 
 	private void MovePath(){
 		time += Time.deltaTime;
-		float sine = Mathf.Cos (2.0f * Mathf.PI * pathFrequency * time);
+		float sine = dir * Mathf.Cos (2.0f * Mathf.PI * pathFrequency * time);
 		vsp = pathMagnitude * sine;
 		transform.localPosition = new Vector3(transform.localPosition.x, startPosition.y - 10.0f + vsp, transform.localPosition.z);
 	}
