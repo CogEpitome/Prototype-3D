@@ -18,11 +18,16 @@ public class EnemySpawner : MonoBehaviour {
 	private int[] spawnHeights;
 	private float spawnTime;
 	private int enemyInd, waveInd;
+	private string difficultyKey = "Difficulty";
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		spawnNo = 3;
-		waveNo = 0;
+		if (PlayerPrefs.HasKey (difficultyKey)) {
+			waveNo = (int)PlayerPrefs.GetFloat (difficultyKey) - 1;
+		} else {
+			waveNo = 0;
+		}
 		waveInd = 0;
 		waveTime = 0;
 		spawnTime = 0;
