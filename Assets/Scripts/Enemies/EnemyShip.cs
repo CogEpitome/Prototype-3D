@@ -77,6 +77,7 @@ public class EnemyShip : MonoBehaviour {
 
 		transform.position -= velocity;
 
+
 		//Check bounds
 		if (transform.position.z < -40) 
 		{
