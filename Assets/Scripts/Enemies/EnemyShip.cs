@@ -75,7 +75,7 @@ public class EnemyShip : MonoBehaviour {
 		if(transform.position.z > 100) velocity.z = speed*4;
 		else velocity.z = speed;
 
-		transform.position -= velocity;
+		transform.position -= velocity * Time.deltaTime;
 
 
 		//Check bounds

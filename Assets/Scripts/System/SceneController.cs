@@ -35,7 +35,7 @@ public class SceneController : MonoBehaviour {
 			{
 				gameOverText.enabled = true;
 				highScoreText.GetComponent<Text>().enabled = true;
-				highScoreText.UpdateText ();
+				highScoreText.UpdateText (scoreManager);
 				if (Input.anyKey) 
 				{
 					SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex); //Restart the current scene

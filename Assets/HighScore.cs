@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class HighScore : MonoBehaviour {
 
 	public Text textElement;
-	public ScoreManager scorer;
 
 	private string text;
 
-	public void UpdateText()
+	public void UpdateText(ScoreManager scorer)
 	{
 		int score = (int)scorer.score;
 		if (score >= PlayerPrefs.GetInt ("HighScore")) {
