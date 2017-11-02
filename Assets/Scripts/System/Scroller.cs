@@ -22,7 +22,7 @@ public class Scroller : MonoBehaviour {
 	//Increase the offset by scrollSpeed and update the material's texure offset to reflect the change.
 	void LateUpdate() 
 	{
-		offset.y += scrollSpeed * Time.deltaTime;
+		offset.y += scrollSpeed * Time.fixedDeltaTime;
 		rend.material.SetTextureOffset ("_MainTex", offset);
 	}
 }

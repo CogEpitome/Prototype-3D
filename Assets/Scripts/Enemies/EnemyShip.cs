@@ -34,7 +34,7 @@ public class EnemyShip : MonoBehaviour {
 		if (!active) 
 		{
 			velocity.z = 14.0f*speed;
-			transform.position += velocity * Time.deltaTime;
+			transform.position += velocity;
 			if (transform.position.z > 150) 
 			{
 				transform.Rotate(new Vector3(0.0f, 180.0f,0.0f));
@@ -52,14 +52,14 @@ public class EnemyShip : MonoBehaviour {
 			Instantiate (smoke, this.transform);
 			Instantiate (explosion, this.transform);
 			dead = true;
-			this.transform.position -= new Vector3(2.0f,0.0f,0.0f)*Time.deltaTime;
+			this.transform.position -= new Vector3(2.0f,0.0f,0.0f);
 		}
 		if(dead)
 		{
 			if (this.transform.position.y > -1) 
 			{
-				velocity.x = 4.0f;// * Time.deltaTime;
-				velocity.y = 12.0f;// * Time.deltaTime;
+				velocity.x = 4.0f * Time.deltaTime;
+				velocity.y = 12.0f * Time.deltaTime;
 				transform.Rotate (new Vector3 (0.0f, 0.0f, 30.0f*Time.deltaTime));
 			} 
 			else 
