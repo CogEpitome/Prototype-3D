@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour {
 
 	private int waveNo;
 	public int spawnNo;
-	public float intervalLength, waveLength, spawnLength, waveTime;
+	public float intervalLength, waveLength, spawnLength, thisSpawnLength, waveTime;
 	public EnemyShip[] enemies;
 	public EnemyShip[] wave;
 	public EnemyShip enemy;
@@ -31,13 +31,14 @@ public class EnemySpawner : MonoBehaviour {
 		waveInd = 0;
 		waveTime = 0;
 		spawnTime = 0;
+		thisSpawnLength = spawnLength;
 		NewWave ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 			if (waveTime > intervalLength) {
-				if (spawnTime > spawnLength) {
+				if (spawnTime > thisSpawnLength) {
 					if (waveInd < wave.Length) {
 
 					spawnHeights = new int[spawnNo];
@@ -73,7 +74,8 @@ public class EnemySpawner : MonoBehaviour {
 		waveNo++;
 		waveInd = 0;
 		waveTime = 0;
-		spawnNo = 2 + (int)(waveNo/10);
+		thisSpawnLength = spawnLength / (Mathf.Pow (1.1f, waveNo));
+		spawnNo = Mathf.Min(2 + (int)(waveNo/5), 5);
 		wave = new EnemyShip[3 + (waveNo*2) * spawnNo];
 		for (int i = 0; i < 3 + (waveNo*2) * spawnNo; i++) {
 			enemyInd =  Random.Range (0, (int)enemies.Length);
