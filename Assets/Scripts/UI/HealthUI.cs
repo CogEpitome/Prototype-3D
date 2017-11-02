@@ -17,7 +17,7 @@ public class HealthUI : MonoBehaviour {
 		flashTime = 0;
 		displayedHp = 0;
 		maxHp = player.GetMaxHp ();
-		baseText = "\n.::HULL INTEGRITY::.\n";
+		baseText = "\n.::SHIELDS::.\n";
 	}
 	
 	// Update is called once per frame

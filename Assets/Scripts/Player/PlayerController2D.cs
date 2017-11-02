@@ -9,11 +9,12 @@ using UnityEngine;
 */
 public class PlayerController2D : MonoBehaviour {
 
-	public Vector3 upperBounds, lowerBounds;		//These vectors limit the player's movement to within the specified bounds
-	private Vector3 velocity, shipAngle;			//These vectors contain information about the player ship's relative velocity and angle in space.
-	private float pitch, roll, yaw;					//These members contain information on the player ship's rotation along each axis. They correspond to the x, y, and z values of shipAngle
-	private float fireTime, hp;						//fireTime holds the time since the last shot was fired, to be cross referenced with the fire rate. Hp is the player's current health.
-	private Ship2D ship;							//Reference to the ship properties container. The ship must be a child of the object this script is attached to.
+	public Vector3 upperBounds, lowerBounds;			//These vectors limit the player's movement to within the specified bounds
+	private Vector3 velocity, shipAngle;				//These vectors contain information about the player ship's relative velocity and angle in space.
+	private float pitch, roll, yaw;						//These members contain information on the player ship's rotation along each axis. They correspond to the x, y, and z values of shipAngle
+	private float fireTime, hp;				//fireTime holds the time since the last shot was fired, to be cross referenced with the fire rate. Hp is the player's current health.
+	private float regenDelay, regenWait, regenRate;	 	//Regen refers to the ship's shields.
+	private Ship2D ship;								//Reference to the ship properties container. The ship must be a child of the object this script is attached to.
 
 	void Awake () 
 	{
@@ -24,6 +25,9 @@ public class PlayerController2D : MonoBehaviour {
 	{
 		fireTime = 0;
 		hp = ship.integrity;
+		regenDelay = ship.regenDelay;
+		regenRate = ship.regenRate;
+		regenWait = 0;
 	}
 
 	//Handle shooting and check for a game over.
@@ -38,6 +42,19 @@ public class PlayerController2D : MonoBehaviour {
 		else 
 		{
 			fireTime+=Time.deltaTime;																//If no shot was fired, increase the time since the last shot.
+		}
+
+		//Check for health regen
+	if (hp < GetMaxHp()) 
+		{
+			if (regenWait >= regenDelay) 
+			{
+				Regenerate ();
+			} 
+			else 
+			{
+				regenWait += Time.deltaTime;
+			}
 		}
 
 		//Run the Game Over sequence if the player is out of hp
@@ -108,10 +125,18 @@ public class PlayerController2D : MonoBehaviour {
 
 	}
 
+	//Regenerate health
+	public void Regenerate()
+	{
+		this.hp += regenRate * Time.deltaTime;
+		if (this.hp >= this.GetMaxHp ()) { this.hp = this.GetMaxHp (); }
+	}
+
 	//Used by other objects to inflict damage
 	public void Damage(float dmg)
 	{
 		this.hp -= dmg;
+		regenWait = 0;
 	}
 
 	//Getters
