@@ -29,6 +29,11 @@ public class SceneController : MonoBehaviour {
 		
 	void Update()
 	{
+		//Exit to main menu
+		if (Input.GetButton ("Cancel")) {
+			SceneManager.LoadScene ("Main Menu");
+		}
+
 		if (gameOver) 
 		{
 			if (gameOverWait > gameOverTime) //If gameOverTime has passed, show the game over and high score texts and allow the scene to be restarted by the player.
