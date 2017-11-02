@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-/* Author: Jonas Iacobi (13:16 23-10-2017)
+/* Author: Jonas Iacobi (10:25 2-11-2017)
  * Handles the spawning of enemy ships, including waves.
 */
 public class EnemySpawner : MonoBehaviour {
@@ -13,12 +13,13 @@ public class EnemySpawner : MonoBehaviour {
 	public int spawnNo;
 	public float intervalLength, waveLength, spawnLength, waveTime;
 	public EnemyShip[] enemies;
-	public EnemyShip[] wave;
 	public EnemyShip enemy;
+
+	private EnemyShip[] wave;
 	private int[] spawnHeights;
-	private float spawnTime;
+	private float spawnTime, thisSpawnLength;
 	private int enemyInd, waveInd;
-	private string difficultyKey = "Difficulty";
+	private const string difficultyKey = "Difficulty";
 
 	// Use this for initialization
 	void Awake () {
@@ -31,13 +32,14 @@ public class EnemySpawner : MonoBehaviour {
 		waveInd = 0;
 		waveTime = 0;
 		spawnTime = 0;
+		thisSpawnLength = spawnLength;
 		NewWave ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 			if (waveTime > intervalLength) {
-				if (spawnTime > spawnLength) {
+				if (spawnTime > thisSpawnLength) {
 					if (waveInd < wave.Length) {
 
 					spawnHeights = new int[spawnNo];
@@ -63,9 +65,11 @@ public class EnemySpawner : MonoBehaviour {
 		}
 
 	void Spawn(int i, float y){
-		enemy = Instantiate (wave [i], this.transform);
-		enemy.startPosition = new Vector3 (0.0f, y, 110.0f+Random.Range(0.0f,30.0f));
-		enemy.transform.position = new Vector3 (enemy.transform.position.x, enemy.startPosition.y, -60.0f);
+		if (i < wave.Length) {
+			enemy = Instantiate (wave [i], this.transform);
+			enemy.startPosition = new Vector3 (0.0f, y, 110.0f + Random.Range (0.0f, 30.0f));
+			enemy.transform.position = new Vector3 (enemy.transform.position.x, enemy.startPosition.y, -60.0f);
+		}
 	}
 
 	void NewWave(){
@@ -73,7 +77,8 @@ public class EnemySpawner : MonoBehaviour {
 		waveNo++;
 		waveInd = 0;
 		waveTime = 0;
-		spawnNo = 2 + (int)(waveNo/10);
+		thisSpawnLength = spawnLength / (Mathf.Pow(1.05f, waveNo));
+		spawnNo = 2 + (int)(waveNo/5);
 		wave = new EnemyShip[3 + (waveNo*2) * spawnNo];
 		for (int i = 0; i < 3 + (waveNo*2) * spawnNo; i++) {
 			enemyInd =  Random.Range (0, (int)enemies.Length);
