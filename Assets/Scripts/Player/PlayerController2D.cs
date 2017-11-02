@@ -12,7 +12,7 @@ public class PlayerController2D : MonoBehaviour {
 	public Vector3 upperBounds, lowerBounds;			//These vectors limit the player's movement to within the specified bounds
 	private Vector3 velocity, shipAngle;				//These vectors contain information about the player ship's relative velocity and angle in space.
 	private float pitch, roll, yaw;						//These members contain information on the player ship's rotation along each axis. They correspond to the x, y, and z values of shipAngle
-	private float fireTime, hp;				//fireTime holds the time since the last shot was fired, to be cross referenced with the fire rate. Hp is the player's current health.
+	private float fireTime, hp;							//fireTime holds the time since the last shot was fired, to be cross referenced with the fire rate. Hp is the player's current health.
 	private float regenDelay, regenWait, regenRate;	 	//Regen refers to the ship's shields.
 	private Ship2D ship;								//Reference to the ship properties container. The ship must be a child of the object this script is attached to.
 
@@ -100,13 +100,13 @@ public class PlayerController2D : MonoBehaviour {
 	{
 		if (other.tag == "Enemy Fire") 
 		{
-			this.hp -= other.GetComponent<EnemyShot>().damage;
+			Damage(other.GetComponent<EnemyShot>().damage);
 			ReflectDamage ();
 			Destroy (other.gameObject);
 		}
 		if (other.tag == "Enemy Trail Fire") 
 		{
-			this.hp -= other.GetComponent<TrailCollider> ().damage;
+			Damage(other.GetComponent<TrailCollider> ().damage);
 			ReflectDamage ();
 			Destroy (other.gameObject);
 		}
