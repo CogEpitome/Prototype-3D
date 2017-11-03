@@ -375,6 +375,7 @@ MonoBehaviour:
   intervalLength: 3
   waveLength: 3
   spawnLength: 3
+  thisSpawnLength: 0
   waveTime: 0
   enemies:
   - {fileID: 114759178879598766, guid: 0d802de55c486414da1687ebb543d654, type: 2}
