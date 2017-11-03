@@ -9,6 +9,7 @@ using UnityEngine;
 */
 public class PlayerController2D : MonoBehaviour {
 
+	public bool autofire = true;						//Toggle autofire
 	public Vector3 upperBounds, lowerBounds;			//These vectors limit the player's movement to within the specified bounds
 	private Vector3 velocity, shipAngle;				//These vectors contain information about the player ship's relative velocity and angle in space.
 	private float pitch, roll, yaw;						//These members contain information on the player ship's rotation along each axis. They correspond to the x, y, and z values of shipAngle
@@ -29,12 +30,17 @@ public class PlayerController2D : MonoBehaviour {
 		regenRate = ship.regenRate;
 		regenWait = 0;
 	}
-
+		
 	//Handle shooting and check for a game over.
 	void Update()
 	{
+		//Check autofire toggle
+		if (Input.GetButton ("Fire2")) {
+			autofire = !autofire;
+		}
+
 		//Check for shooting
-		if (Input.GetButton ("Fire1") && fireTime > 1/ship.fireRate) 								//The second condition compares the time since the last shot with the fireRate.
+		if ((Input.GetButton ("Fire1") || autofire) && fireTime > 1/ship.fireRate) 							//The second condition compares the time since the last shot with the fireRate.
 		{																							//The fireRate is in shots/second so the inverse gives the seconds/shot.
 			fireTime = 0;																			//Reset the time since the last shot.
 			Instantiate (ship.shot, ship.gun.transform.position + velocity, Quaternion.identity);	//Instantiate the shot.
