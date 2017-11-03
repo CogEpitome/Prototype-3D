@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  damage: 0.1
+  damage: 2
   precision: 0.25
   trailCollider: {fileID: 114700203462715760, guid: c4f9d872f0ce9e54a98225def9b27bbc,
     type: 2}

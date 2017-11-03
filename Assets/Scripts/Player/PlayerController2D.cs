@@ -9,7 +9,7 @@ using UnityEngine;
 */
 public class PlayerController2D : MonoBehaviour {
 
-	public bool autofire = true;						//Toggle autofire
+	public bool autofire;						//Toggle autofire
 	public Vector3 upperBounds, lowerBounds;			//These vectors limit the player's movement to within the specified bounds
 	private Vector3 velocity, shipAngle;				//These vectors contain information about the player ship's relative velocity and angle in space.
 	private float pitch, roll, yaw;						//These members contain information on the player ship's rotation along each axis. They correspond to the x, y, and z values of shipAngle
@@ -29,14 +29,18 @@ public class PlayerController2D : MonoBehaviour {
 		regenDelay = ship.regenDelay;
 		regenRate = ship.regenRate;
 		regenWait = 0;
+		autofire = false;
 	}
 		
 	//Handle shooting and check for a game over.
 	void Update()
 	{
 		//Check autofire toggle
-		if (Input.GetButton ("Fire2")) {
-			autofire = !autofire;
+		if (Input.GetButtonDown("Fire2")) {
+			if (autofire)
+				autofire = false;
+			else
+				autofire = true;
 		}
 
 		//Check for shooting
@@ -112,9 +116,8 @@ public class PlayerController2D : MonoBehaviour {
 		}
 		if (other.tag == "Enemy Trail Fire") 
 		{
-			Damage(other.GetComponent<TrailCollider> ().damage);
+			Damage(other.GetComponent<TrailCollider> ().damage * Time.deltaTime);
 			ReflectDamage ();
-			Destroy (other.gameObject);
 		}
 	}
 
