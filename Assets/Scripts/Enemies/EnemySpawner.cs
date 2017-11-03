@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour {
 	public EnemyShip[] enemies;
 	public EnemyShip[] wave;
 	public EnemyShip enemy;
+	public WaveText waveText;
 	private int[] spawnHeights;
 	private float spawnTime;
 	private int enemyInd, waveInd;
@@ -64,13 +65,15 @@ public class EnemySpawner : MonoBehaviour {
 		}
 
 	void Spawn(int i, float y){
-		enemy = Instantiate (wave [i], this.transform);
-		enemy.startPosition = new Vector3 (0.0f, y, 110.0f+Random.Range(0.0f,30.0f));
-		enemy.transform.position = new Vector3 (enemy.transform.position.x, enemy.startPosition.y, -60.0f);
+		if (i < wave.Length) {
+			enemy = Instantiate (wave [i], this.transform);
+			enemy.startPosition = new Vector3 (0.0f, y, 110.0f + Random.Range (0.0f, 30.0f));
+			enemy.transform.position = new Vector3 (enemy.transform.position.x, enemy.startPosition.y, -60.0f);
+		}
 	}
 
 	void NewWave(){
-		print ("new wave");
+		waveText.UpdateText (waveNo);
 		waveNo++;
 		waveInd = 0;
 		waveTime = 0;

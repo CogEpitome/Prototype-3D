@@ -385,6 +385,7 @@ MonoBehaviour:
   - {fileID: 114744348124395266, guid: b8ef87058606e6148af7d8426500e345, type: 2}
   wave: []
   enemy: {fileID: 0}
+  waveText: {fileID: 1807313898}
 --- !u!1 &326998491 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1173094282963370, guid: 8a62cc8b68ef06f4aa61feb1fbde8ddd,
@@ -1536,13 +1537,14 @@ GameObject:
   - component: {fileID: 1807313895}
   - component: {fileID: 1807313897}
   - component: {fileID: 1807313896}
+  - component: {fileID: 1807313898}
   m_Layer: 5
   m_Name: WaveText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1807313895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1558,8 +1560,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 10.6, y: -7.100006}
+  m_SizeDelta: {x: 160, y: 53.9}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1807313896
 MonoBehaviour:
@@ -1581,17 +1583,17 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
+    m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MinSize: 0
+    m_MaxSize: 113
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Wave '
 --- !u!222 &1807313897
@@ -1600,6 +1602,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1807313894}
+--- !u!114 &1807313898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1807313894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ceaca0439099948bb4696b5253b40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textElement: {fileID: 1807313896}
 --- !u!1 &1862763100
 GameObject:
   m_ObjectHideFlags: 0
